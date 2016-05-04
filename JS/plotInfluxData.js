@@ -13,8 +13,14 @@ var realData = [
     {key: "Temperature", y: 23}
 ];
 
+var sin = [];
+var sin2 = [];
+var cos = [];
+
 var width = 250;
 var height = 200;
+
+var lineChart;
 
 nv.addGraph(function(){
 	return drawPieChart("#HeartRateGraph" , testdata , width , height);
@@ -25,14 +31,14 @@ nv.addGraph(function(){
 });
 
 nv.addGraph(function() {
-  var chart = nv.models.lineChart();
-  chart.useInteractiveGuideline(true); //We want nice looking tooltips and a guideline!
+  lineChart = nv.models.lineChart();
+  lineChart.useInteractiveGuideline(true); //We want nice looking tooltips and a guideline!
 
-  chart.xAxis     //Chart x-axis settings
+  lineChart.xAxis     //Chart x-axis settings
       .axisLabel('Time (ms)')
       .tickFormat(d3.format(',r'));
 
-  chart.yAxis     //Chart y-axis settings
+  lineChart.yAxis     //Chart y-axis settings
       .axisLabel('Voltage (v)')
       .tickFormat(d3.format('.02f'));
 
@@ -40,17 +46,16 @@ nv.addGraph(function() {
   var myData = sinAndCos();   //You need data...
 
   d3.select('#LineGraph svg')    //Select the <svg> element you want to render the chart in.   
-      .datum(sinAndCos())         //Populate the <svg> element with chart data...
+      .datum(myData)         //Populate the <svg> element with chart data...
       .transition().duration(350)
-      .call(chart);          //Finally, render the chart!
+      .call(lineChart);          //Finally, render the chart!
 
   //Update the chart when window resizes.
-  nv.utils.windowResize(function() { chart.update()});
-  return chart;
+  nv.utils.windowResize(function() { lineChart.update()});
+  return lineChart;
 });
 
 function sinAndCos() {
-  var sin = [] , sin2 = [] , cos = [];
   //Data is represented as an array of {x,y} pairs.
   for (var i = 0; i < 100; i++) {
     sin.push({x: i, y: Math.sin(i/10)});
@@ -78,6 +83,15 @@ function sinAndCos() {
     }
   ];
 }
+
+
+setInterval(function(){
+  for(var i = 0; i < 99; i++){
+    sin[i].y = sin[i + 1].y;
+  }
+  sin[99].y = Math.random();
+  lineChart.update();
+} , 500);
 
 function drawPieChart(id , data , width , height){
 	var chart = nv.models.pieChart()
