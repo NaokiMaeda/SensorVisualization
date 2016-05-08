@@ -1,9 +1,10 @@
-var xx = h337.create({
-	"element":document.getElementById("gazemap"), 
-	"radius":10, 
+var GazeMap = h337.create({
+	"element":document.getElementById("GazeMap"), 
+	"radius":2, 
 	"visible":true
 });
-xx.store.addDataPoint(10, 10);
-setInterval(function(){
-	xx.store.addDataPoint(100, 10);
-} , 1000);
+
+var ipc = require('electron').ipcRenderer;
+ipc.on("Gaze", function(event, arg) {
+	GazeMap.store.addDataPoint(arg[0] * 240 / 1920 , arg[1] * 135 / 1080);
+});
