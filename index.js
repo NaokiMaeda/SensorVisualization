@@ -5,12 +5,13 @@ var BrowserWindow = require('browser-window');
 var influx = require("influx");
 var fs = require("fs");
 
-var serverInfo = JSON.parse(fs.readFileSync("serverInfo.json" , "utf-8"));
+const serverInfo = JSON.parse(fs.readFileSync("serverInfo.json" , "utf-8"));
 var client = influx(serverInfo);
 
 //require('crash-reporter').start();
 
 var mainWindow = null;
+app.commandLine.appendSwitch('enable-unsafe-es3-apis');
 
 app.on('window-all-closed', function() {
   app.quit();
@@ -23,7 +24,7 @@ app.on('ready', function() {
 
   setInterval(function(){
     client.query("select HeartRate , Temparture from testData",function(err , result){
-      console.log(result);
+      mainWindow.webContents.send("influx" , result[0][0].HeartRate);
     });
   },1000);
 
