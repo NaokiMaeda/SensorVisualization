@@ -35,7 +35,20 @@ var lineChart = new Chart(ctx, {
     }
 });
 
-setInterval(function(){
-    lineChart.data.datasets[0].data[0] = Math.random() * 100;
+var ipc = require('electron').ipcRenderer;
+ipc.on('influx', function(event, arg) {
+    lineChart.data.datasets[0].data[0] = arg;
     lineChart.update();
-} , 1000);
+});
+
+// var newData = [];
+// setInterval(function(){
+//     // lineChart.clear();
+//     for(var i = 0; i < 100; i++){
+//         newData[i] = Math.random(0) * 100;
+//     }
+//     //lineChart.data.datasets[0].data[0] = Math.random() * 100;
+//     lineChart.data.datasets[0].data = newData;
+//     //document.write(lineChart.data.datasets[0].data);
+//     lineChart.update();
+// } , 1000);
