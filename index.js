@@ -27,7 +27,7 @@ app.on('ready', function() {
       console.log(result);
       var resultData = result[0][0];
       mainWindow.webContents.send("HeartRate" , resultData.HeartRate);
-      mainWindow.webContents.send("Temperature" , resultData.Temperture);
+      mainWindow.webContents.send("Temperature" , resultData.Temperature);
       mainWindow.webContents.send("Humidity" , resultData.Humidity);
       mainWindow.webContents.send("Movement" , resultData.Movement);
       // mainWindow.webContents.send("Gaze" , [resultData.gazeX , resultData.gazeY]);

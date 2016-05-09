@@ -1,6 +1,6 @@
-var TLabel = ["Temperture"];
+var TLabel = ["Temperature"];
 var TValue = [10 , 90];
-var Temperture = document.getElementById("Temperture").getContext("2d");
+var Temperature = document.getElementById("Temperature").getContext("2d");
 var TData = {
 	labels		: TLabel , 
 	datasets	: [{
@@ -17,14 +17,14 @@ var TData = {
 	}]
 };
 
-var TempertureChart = new Chart(Temperture , {
+var TemperatureChart = new Chart(Temperature , {
 	type : "doughnut" , 
 	data : TData
 });
 
 var ipc = require('electron').ipcRenderer;
-ipc.on("Temperture", function(event, arg) {
-    TempertureChart.data.datasets[0].data[0] = arg;
-    TempertureChart.data.datasets[0].data[1] = 100 - arg;
-    TempertureChart.update();
+ipc.on("Temperature", function(event, arg) {
+    TemperatureChart.data.datasets[0].data[0] = arg;
+    TemperatureChart.data.datasets[0].data[1] = 100 - arg;
+    TemperatureChart.update();
 });
