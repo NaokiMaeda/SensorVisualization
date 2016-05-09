@@ -1,9 +1,8 @@
-#GazeMap {
-	float:left;
-	width:240px;
-	height:135px;
-	margin: 0;
-	border:1px dashed black;
+#Movement{
+	float: right;
+	width: 550px;
+	height: 150px;
+	max-width: 500px;
 }
 
 #MouseClick{
