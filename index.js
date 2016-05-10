@@ -7,7 +7,7 @@ var fs = require("fs");
 
 const serverInfo = JSON.parse(fs.readFileSync("serverInfo.json" , "utf-8"));
 var client = influx(serverInfo);
-const query = "select HeartRate , Temperature , Humidity , Movement from StressTest ORDER BY time DESC limit 1";
+const query = "select HeartRate , Temperature , Humidity , Movement , KeyCount from StressTest ORDER BY time DESC limit 1";
 //require('crash-reporter').start();
 
 var mainWindow = null;
@@ -29,7 +29,7 @@ app.on('ready', function() {
       mainWindow.webContents.send("HeartRate" , resultData.HeartRate);
       mainWindow.webContents.send("Temperature" , resultData.Temperature);
       mainWindow.webContents.send("Humidity" , resultData.Humidity);
-      mainWindow.webContents.send("Movement" , resultData.Movement);
+      mainWindow.webContents.send("Movement" , [resultData.Movement , resultData.KeyCount]);
       // mainWindow.webContents.send("Gaze" , [resultData.gazeX , resultData.gazeY]);
       // mainWindow.webContents.send("Click" , [resultData.leftClick , resultData.rightClick]);
     });
