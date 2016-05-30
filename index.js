@@ -1,7 +1,8 @@
 'use strict';
 
-var app = require('app');
-var BrowserWindow = require('browser-window');
+var electron = require('electron');
+var app = electron.app
+var BrowserWindow = electron.BrowserWindow;
 var influx = require("influx");
 var fs = require("fs");
 
