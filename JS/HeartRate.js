@@ -1,51 +1,57 @@
 var HRLabels = [];
 var HRValue = [];
 for(var i = 0; i < 60; i++){
-    HRLabels.push("");
-    HRValue.push(0);
+	HRLabels.push("");
+	HRValue.push(0);
 }
 var data = {
-    labels: HRLabels , 
-    datasets: [{ 
-        label: "HeartRate", 
-        fill: false, 
-        lineTension: 0.1, 
-        backgroundColor: "rgba(75,192,192,0.4)", 
-        borderColor: "rgba(75,192,192,1)", 
-        borderCapStyle: 'butt', 
-        borderDash: [], 
-        borderDashOffset: 0.0, 
-        borderJoinStyle: 'miter', 
-        pointBorderColor: "rgba(75,192,192,1)", 
-        pointBackgroundColor: "#fff", 
-        pointBorderWidth: 1, 
-        pointHoverRadius: 5, 
-        pointHoverBackgroundColor: "rgba(75,192,192,1)", 
-        pointHoverBorderColor: "rgba(220,220,220,1)", 
-        pointHoverBorderWidth: 2, 
-        pointRadius: 1, 
-        pointHitRadius: 10, 
-        data: HRValue
-    }] 
+	labels: HRLabels ,
+	datasets: [{
+		label: "心拍数",
+		fill: false,
+		lineTension: 0.1,
+		backgroundColor: "rgba(75,192,192,0.4)",
+		borderColor: "rgba(75,192,192,1)",
+		borderCapStyle: "butt",
+		borderDash: [],
+		borderDashOffset: 0.0,
+		borderJoinStyle: "miter",
+		pointBorderColor: "rgba(75,192,192,1)",
+		pointBackgroundColor: "#fff",
+		pointBorderWidth: 1,
+		pointHoverRadius: 5,
+		pointHoverBackgroundColor: "rgba(75,192,192,1)",
+		pointHoverBorderColor: "rgba(220,220,220,1)",
+		pointHoverBorderWidth: 2,
+		pointRadius: 1,
+		pointHitRadius: 10,
+		data: HRValue
+	}]
 };
 
 var HeartRate = document.getElementById("HeartRate").getContext("2d");
 
 var lineChart = new Chart(HeartRate, {
-    type: 'line',
-    data: data,
-    options: {
-        xAxes: [{
-            display: false
-        }]
-    }
+	type: "line",
+	data: data,
+	options: {
+		scales : {
+			yAxes : [{
+				ticks : {
+					min : 50 ,
+					max : 120 ,
+					stepSize : 10
+				}
+			}]
+		}
+	}
 });
 
-var ipc = require('electron').ipcRenderer;
+var ipc = require("electron").ipcRenderer;
 ipc.on("HeartRate", function(event, arg) {
-    lineChart.data.datasets[0].data.shift();
-    lineChart.data.datasets[0].data.push(arg);
-    lineChart.update();
+	lineChart.data.datasets[0].data.shift();
+	lineChart.data.datasets[0].data.push(arg[0]);
+	lineChart.update();
 });
 
 // var newData = [];

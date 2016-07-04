@@ -1,34 +1,34 @@
-#Movement{
-	float: right;
-	width: 550px;
-	height: 150px;
-	max-width: 500px;
-}
-
-#MouseClick{
-	float	: center;
-	width	: 250px;
-	height	: 250px; 
-	max-width	: 250px; 
-}
-
 #HeartRate{
 	float: right;
 	width: 550px;
 	height: 150px;
-	max-width: 500px;
+	max-width: 400px;
+}
+
+#Movement{
+	float: right;
+	width: 550px;
+	height: 150px;
+	max-width: 400px;
+}
+
+#KeyCount{
+	float : right;
+	width	: 550px;
+	height	: 150px;
+	max-width: 400px;
 }
 
 #Temperature{
 	float	: left;
-	width	: 250px;
-	height	: 250px; 
-	max-width	: 250px; 
+	width	: 200px;
+	height	: 200px;
+	max-width	: 200px;
 }
 
 #Humidity{
 	float	: left;
-	width	: 250px;
-	height	: 250px; 
-	max-width	: 250px; 
+	width	: 200px;
+	height	: 200px;
+	max-width	: 200px;
 }

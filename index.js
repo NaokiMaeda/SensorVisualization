@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-var electron = require('electron');
-var app = electron.app
+var electron = require("electron");
+var app = electron.app;
 var BrowserWindow = electron.BrowserWindow;
 var influx = require("influx");
 var fs = require("fs");
@@ -12,31 +12,32 @@ const query = "select HeartRate , Temperature , Humidity , Movement , KeyCount f
 //require('crash-reporter').start();
 
 var mainWindow = null;
-app.commandLine.appendSwitch('enable-unsafe-es3-apis');
+app.commandLine.appendSwitch("enable-unsafe-es3-apis");
 
-app.on('window-all-closed', function() {
-  app.quit();
+app.on("window-all-closed", function() {
+	app.quit();
 });
 
-app.on('ready', function() {
-  // ブラウザ(Chromium)の起動, 初期画面のロード
-  mainWindow = new BrowserWindow({width: 380, height: 780});
-  mainWindow.loadURL('file://' + __dirname + '/index.html');
+app.on("ready", function() {
+	// ブラウザ(Chromium)の起動, 初期画面のロード
+	mainWindow = new BrowserWindow({width: 850, height: 450});
+	mainWindow.loadURL("file://" + __dirname + "/index.html");
 
-  setInterval(function(){
-    client.query(query,function(err , result){
-      console.log(result);
-      var resultData = result[0][0];
-      mainWindow.webContents.send("HeartRate" , resultData.HeartRate);
-      mainWindow.webContents.send("Temperature" , resultData.Temperature);
-      mainWindow.webContents.send("Humidity" , resultData.Humidity);
-      mainWindow.webContents.send("Movement" , [resultData.Movement , resultData.KeyCount]);
-      // mainWindow.webContents.send("Gaze" , [resultData.gazeX , resultData.gazeY]);
-      // mainWindow.webContents.send("Click" , [resultData.leftClick , resultData.rightClick]);
-    });
-  },1000);
+	setInterval(function(){
+		client.query(query,function(err , result){
+			console.log(result);
+			var resultData = result[0][0];
+			mainWindow.webContents.send("HeartRate" , resultData.HeartRate);
+			mainWindow.webContents.send("Temperature" , resultData.Temperature);
+			mainWindow.webContents.send("Humidity" , resultData.Humidity);
+			mainWindow.webContents.send("Movement" , resultData.Movement);
+			mainWindow.webContents.send("KeyCount" , resultData.KeyCount);
+			// mainWindow.webContents.send("Gaze" , [resultData.gazeX , resultData.gazeY]);
+			// mainWindow.webContents.send("Click" , [resultData.leftClick , resultData.rightClick]);
+		});
+	},1000);
 
-  mainWindow.on('closed', function() {
-  mainWindow = null;
-  });
+	mainWindow.on("closed", function() {
+		mainWindow = null;
+	});
 });
