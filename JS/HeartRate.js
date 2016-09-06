@@ -7,11 +7,11 @@ for(var i = 0; i < 60; i++){
 var data = {
 	labels: HRLabels ,
 	datasets: [{
-		label: "心拍数",
+		label: "user1",
 		fill: false,
 		lineTension: 0.1,
 		backgroundColor: "rgba(75,192,192,0.4)",
-		borderColor: "rgba(75,192,192,1)",
+		borderColor: "rgba(255, 255, 255, 1)",
 		borderCapStyle: "butt",
 		borderDash: [],
 		borderDashOffset: 0.0,
@@ -35,12 +35,18 @@ var lineChart = new Chart(HeartRate, {
 	type: "line",
 	data: data,
 	options: {
+		legend : {
+			labels : {
+				fontColor : "#fff"
+			}
+		} ,
 		scales : {
 			yAxes : [{
 				ticks : {
 					min : 50 ,
 					max : 120 ,
-					stepSize : 10
+					stepSize : 10 ,
+					fontColor : "#fff"
 				}
 			}]
 		}

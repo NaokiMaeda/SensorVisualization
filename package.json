@@ -10,6 +10,9 @@
   "author": "Lucky",
   "license": "ISC",
   "dependencies": {
-    "influx": "^4.2.0"
+    "chart.js": "^2.2.2",
+    "influx": "^4.2.0",
+    "material-design-icons": "^3.0.1",
+    "material-design-lite": "^1.2.0"
   }
 }

@@ -1,10 +1,10 @@
-var HLabel = ["湿度"];
+var HLabel = ["user1"];
 var HValue = [10 , 90];
 var Humidity = document.getElementById("Humidity").getContext("2d");
 var HData = {
 	labels		: HLabel ,
 	datasets	: [{
-		labels 	: "湿度" ,
+		labels 	: "user1" ,
 		data 	: HValue ,
 		backgroundColor: [
 			"#1E88E5",

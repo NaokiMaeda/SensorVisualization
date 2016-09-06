@@ -1,10 +1,10 @@
-var TLabel = ["温度"];
+var TLabel = ["user1"];
 var TValue = [10 , 90];
 var Temperature = document.getElementById("Temperature").getContext("2d");
 var TData = {
 	labels		: TLabel ,
 	datasets	: [{
-		labels 	: "温度" ,
+		labels 	: "user1" ,
 		data 	: TValue ,
 		backgroundColor: [
 			"#C2185B",

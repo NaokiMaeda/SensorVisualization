@@ -1,22 +1,100 @@
 <!DOCTYPE>
-<html 	lang = "ja">
-		<head>
-			<meta	charset="utf-8">
-			<title>StressVisualization</title>
-			<script src="JS/Chart.js"></script>
-			<script src="JS/heatmap.js"></script>
-			<link	href="visualize.css" rel="stylesheet" type="text/css">
-		</head>
-		<body>
-			<canvas id = "HeartRate"></canvas>
-			<canvas id = "Movement"></canvas>
-			<canvas id = "KeyCount"></canvas>
-			<canvas id = "Temperature"></canvas>
-			<canvas id = "Humidity"></canvas>
-			<script src="JS/HeartRate.js"></script>
-			<script src="JS/Movement.js"></script>
-			<script src="JS/KeyCount.js"></script>
-			<script src="JS/Temperture.js"></script>
-			<script src="JS/Humidity.js"></script>
-		</body>
+<html lang="ja">
+
+<head>
+	<meta charset="utf-8">
+	<title>StressVisualization</title>
+	<!-- CSS -->
+	<link href="node_modules/material-design-icons/iconfont/material-icons.css" rel="stylesheet">
+	<link href="node_modules/material-design-lite/dist/material.min.css" rel="stylesheet">
+
+	<!-- JS -->
+	<script src="node_modules/chart.js/dist/Chart.min.js"></script>
+	<script src="node_modules/material-design-lite/dist/material.min.js"></script>
+</head>
+
+<body>
+	<!-- Always shows a header, even in smaller screens. -->
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<header class="mdl-layout__header  mdl-color--light-blue-400">
+			<div class="mdl-layout__header-row">
+				<!-- Title -->
+				<span class="mdl-layout-title">SensorVisualization</span>
+			</div>
+		</header>
+		<div class="mdl-layout__drawer">
+			<span class="mdl-layout-title">Menu</span>
+			<nav class="mdl-navigation">
+				<a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+			</nav>
+		</div>
+		<main class="mdl-layout__content mdl-color--grey-200">
+			<div class="mdl-grid">
+				<div class="mdl-card mdl-shadow--2dp mdl-cell--5-col-desktop">
+					<div class="mdl-card__title mdl-color--teal-500	mdl-color-text-white">
+						<canvas id="HeartRate"></canvas>
+					</div>
+					<div class="mdl-card__supporting-text mdl-color-text--grey-600">
+						<i class="material-icons">favorite</i>
+					</div>
+				</div>
+
+				<div class="mdl-cell--1-col-desktop"></div>
+
+				<div class="mdl-card mdl-shadow--2dp mdl-cell--5-col-desktop">
+					<div class="mdl-card__title mdl-color--light-blue-400 mdl-color-text-white">
+						<canvas id="Movement"></canvas>
+					</div>
+					<div class="mdl-card__supporting-text mdl-color-text--grey-600">
+						<i class="material-icons">mouse</i>
+					</div>
+				</div>
+			</div>
+
+			<div class="mdl-grid">
+				<div class="mdl-card mdl-shadow--2dp mdl-cell--5-col-desktop">
+					<div class="mdl-card__title mdl-color--blue-grey-400 mdl-color-text-white">
+						<canvas id="KeyCount"></canvas>
+					</div>
+					<div class="mdl-card__supporting-text mdl-color-text--grey-600">
+						<i class="material-icons">keyboard</i>
+					</div>
+				</div>
+
+				<div class="mdl-cell--1-col-desktop"></div>
+
+				<div class="mdl-card mdl-shadow--2dp mdl-cell--3-col-desktop">
+					<div class="mdl-card__title mdl-color--pink-300">
+						<canvas id="Temperature"></canvas>
+					</div>
+					<div class="mdl-card__supporting-text mdl-color-text--grey-600">
+						<i class="material-icons">wb_sunny</i>
+					</div>
+				</div>
+				
+				<div class="mdl-card mdl-shadow--2dp mdl-cell--3-col-desktop">
+					<div class="mdl-card__title mdl-color--light-blue-A100">
+						<canvas id="Humidity"></canvas>
+					</div>
+					<div class="mdl-card__supporting-text mdl-color-text--grey-600">
+						<i class="material-icons">blur_on</i>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+
+	<!--
+	<canvas id="Movement"></canvas>
+	<canvas id="KeyCount"></canvas>
+	<canvas id="Temperature"></canvas>
+	<canvas id="Humidity"></canvas>
+-->
+	<script src="JS/HeartRate.js"></script>
+	<script src="JS/Movement.js"></script>
+	<script src="JS/KeyCount.js"></script>
+	<script src="JS/Temperture.js"></script>
+	<script src="JS/Humidity.js"></script>
+</body>
+
 </html>
